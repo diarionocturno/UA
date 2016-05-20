@@ -1,0 +1,584 @@
+<?php
+/**
+ * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
+ * @license		GNU/GPL, see LICENSE.php
+ * Joomla! is free software. This version may have been modified pursuant
+ * to the GNU General Public License, and as distributed it includes or
+ * is derivative of works licensed under the GNU General Public License or
+ * other free or open source software licenses.
+ * See COPYRIGHT.php for copyright notices and details.
+ */
+// require_once ('mobile_detect.php');
+defined('_JEXEC') or die('Restricted access');
+
+$home = false;
+$defaultLanguage='es-es';
+if (JRequest::getVar('view') == 'frontpage')
+{
+$home=true;
+//echo 'this is front page';
+}
+$url = clone(JURI::getInstance());
+$showRightColumn = $this->countModules('right');
+$showRightColumn &= JRequest::getCmd('layout') != 'form';
+$showRightColumn &= JRequest::getCmd('task') != 'edit';
+$showLeftColumn = $this->countModules('left or informacionpara or menuexplore or espmultimedia');
+$showLeftColumn &= JRequest::getCmd('layout') != 'form';
+$showLeftColumn &= JRequest::getCmd('task') != 'edit';
+$shownoticiasuniandinas = $this->countModules('noticiasuniandinas');
+$tipoPlantilla = JRequest::getVar('tipo_plantilla');
+global $Itemid;
+
+// var_dump($Itemid);
+	$_Itemid = $Itemid;
+	if(($Itemid==565) || ($Itemid==566)){
+		$Itemid = 564; 
+	}
+	if(($showRightColumn =='') && (($Itemid==564) || ($Itemid==566))){
+	    if(($tipoPlantilla==0)||($tipoPlantilla=='')){
+            $bgleft= 'bgleft2'; 
+            $bgright= 'bgright2';
+            $contenedor='contenedor2';
+            $logo='logo2';  
+            $all='all2';
+            $menusuperior='menusuperior2';
+            $right='right2';
+            $correo='correo2';
+        }
+        if($tipoPlantilla==1){
+            $bgleft= 'bgleft';
+            $bgright= 'bgright';
+            $contenedor='contenedor';
+            $logo='logo';   
+            $all='all'; 
+            $menusuperior='menusuperior';   
+            $ingreso='si';
+            $right='right';
+            $correo='correo';
+        }
+
+	}	else{
+		$bgleft= 'bgleft';
+		$bgright= 'bgright';
+		$contenedor='contenedor';
+		$logo='logo';	
+		$all='all';	
+		$menusuperior='menusuperior';	
+		$ingreso='si';
+		$right='right';
+		$correo='correo';
+		
+	}
+    
+
+	if(($showRightColumn =='')&&($showLeftColumn =='') && (JRequest::getVar('view') == 'article')&& ((JRequest::getVar('id') == '10')||(JRequest::getVar('id') == '11' )||(JRequest::getVar('id') == '12' ) )){
+		$bgleft= 'bgleft';
+		$bgright= 'bgright';
+		$contenedor='contenedor';
+		$logo='logo';	
+		$all='all';	
+		$menusuperior='menusuperior';
+		$ingreso='si';
+		$right='right';
+		$correo='correo';
+	}
+								
+	if(($Itemid==565)){
+	     if(($tipoPlantilla==0)||($tipoPlantilla=='')){
+    		$bgleft= 'bgleft2';	
+    		$bgright= 'bgright2';
+    		$contenedor='contenedor2';
+    		$logo='logo2';	
+    		$all='all2';
+    		$menusuperior='menusuperior2';
+    		$right='right2';
+    		$correo='correo2';
+         }
+         if($tipoPlantilla==1){
+            $bgleft= 'bgleft';
+            $bgright= 'bgright';
+            $contenedor='contenedor';
+            $logo='logo';   
+            $all='all'; 
+            $menusuperior='menusuperior';   
+            $ingreso='si';
+            $right='right3';
+            $correo='correo';
+        }
+
+	}
+?>
+<?php echo '<?xml version="1.0" encoding="utf-8"?'.'>'; ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" >
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="cache-control" content="max-age=1800" />
+	<jdoc:include type="head" />
+	<link rel="stylesheet" href="/modules/mod_uniandes_en/asset/tango/skin.css" type="text/css" /> 
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="https://feeds.feedburner.com/NoticiasUniandinas"/>
+	<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/css/template.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/css/position.css" type="text/css" media="screen,projection" />
+	<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/css/layout.css" type="text/css" media="screen,projection" />
+	<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/css/print.css" type="text/css" media="Print" />
+	<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/css/general.css" type="text/css" />
+	<link rel="shortcut icon" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/favicon.ico" />
+	<?php if($this->direction == 'rtl') : ?>
+	<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/css/template_rtl.css" type="text/css" />
+	<?php endif; ?>
+	<!--link href="http://educacioncontinuada.uniandes.edu.co/templates/econtinuada/images/logo-uniandes.png" rel="image_src"/-->
+	<!--[if lte IE 6]>
+		<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/css/ieonly.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+	<!--[if IE 7]>
+		<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/css/ie7only.css" rel="stylesheet" type="text/css" />
+	<![endif]-->
+	<!--[if lt IE 8]>
+        <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/css/ie8only.css" rel="stylesheet" type="text/css" />
+        <![endif]-->
+    <!--[if IE 8]>
+        <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/css/ie8only.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+	<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/javascript/md_stylechanger.js"></script>
+	<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/javascript/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/javascript/jquery-ui-1.8.6.custom.min.js"></script>
+	
+
+	<script src="modules/mod_uniandes_en/asset/jquery.jcarousel.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/javascript/jquery.corners.js"></script>
+	<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/javascript/jquery.pajinate.js"></script>
+	<script type="text/javascript">
+	</script>
+	<script src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/utilidades/mediaelement-and-player.min.js"></script>
+	<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/utilidades/mediaelementplayer.min.css" />
+	<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template;?>/utilidades/mejs-skins.css" />
+	<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery('audio,video').mediaelementplayer({
+			success: function(player, node) {
+				jQuery('#' + node.id + '-mode').html('mode: ' + player.pluginType);
+			}
+		});
+	});
+	</script>
+<!-- Codigo Analitycs -->	
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-12025745-1']);
+  _gaq.push(['_setDomainName', 'uniandes.edu.co']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script type="text/javascript">
+        jQuery.noConflict();
+</script>
+<!--<script src="<?php //echo $this->baseurl ?>/templates/<?php //echo $this->template;?>/javascript/script.js"></script>-->
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+	jQuery('#right div.moduletable').corners('bottom 10px');
+		});
+		jQuery(document).ready(function() {
+			jQuery('#mycarousel').jcarousel();
+			jQuery("table.contentpaneopen tr td p").css({'padding-right':'20px'}); 	/* Modificado JC*/
+		});
+      jQuery(document).ready(function(){
+	  var match = 'input.default[@type=text]';  
+	  
+	  
+	  jQuery(match).focus(function(){
+      this.valuedefault = this.valuedefault || this.value;
+      if (this.value == this.valuedefault)
+      this.value = '';
+      });
+	   
+     jQuery(match).blur(function(){
+      if (this.value.length == 0 || this.value == this.valuedefault)
+      $(this).css('color','#000');
+      if (this.valuedefault && this.value.length==0)
+      this.value = this.valuedefault;
+      });
+      });
+</script> 
+</head>
+<body>		
+	<jdoc:include type="modules" name="banner_float" />
+	<div id="<?php echo $contenedor; ?>">
+	    <div id="contenedor_">
+	        <?php if($this->countModules("redes_sociales")): ?>
+                <jdoc:include type="modules" name="redes_sociales" headerLevel="3" />
+            <?php endif; ?>
+    		<div id="<?php echo $all; ?>">
+    			<div id="<?php echo $bgleft; ?>"></div>
+                <div id="<?php echo $bgleft."_"; ?>"></div>
+    			<div id="<?php echo $bgright; ?>"></div>
+                <div id="<?php echo $bgright."_"; ?>">
+                </div>
+    			<div id="principal2" >
+    			<img  src="/templates/UniAndes/images/fondobarrasmenuleft.png" border="0" style="border: 0; margin: 0px;">
+    			</div>
+    			<div id="principal3" >
+    			<img  src="/templates/UniAndes/images/fondobarrasmenuright.png" border="0" style="border: 0; margin: 0px;">
+    			</div>
+    			
+    			
+    			<div id="header">
+    				<div id="<?php echo $menusuperior; ?>">
+    					<jdoc:include type="modules" name="menusuperior" />	
+    				</div>
+    				<div class="logo">
+    				<div><a href="/"><img src="<?php if ($this->language=="es-es") {echo $this->baseurl ?>/templates/<?php echo $this->template;?>/images/<?php echo $logo; ?>.png" border="0" style="border: 0; margin: 0px;" alt="<?php echo JText::_('Logo Universidad de los Andes');}elseif($this->language=="en-gb"){echo $this->baseurl ?>/templates/<?php echo $this->template;?>/images/<?php echo $logo; ?>.png" border="0" style="border: 0; margin: 0px;" alt="<?php echo JText::_('Logo Universidad de los Andes');} ?>" /></a></div>
+    				</div><!--logo -->
+    				<!--comienzo ingreso -->	
+					<!-- Ajustado 27/06/2012 -->	
+    				<div id="ingreso">
+    				
+						Para ingresar al correo electr&oacute;nico haga clic&nbsp;  <a class="ayuda_01062012" href="http://correo.uniandes.edu.co/ ">aqu&iacute;  </a><!--fin ayuda -->
+					
+    				</div><!--fin ingreso -->	
+    				
+    				<?php 
+    				
+    				
+    				if ($home){ 
+    				$menunoticiashome='menunoticiashome';
+    					}else{
+    					$menunoticiashome='menunoticiasotroshome';
+    					}
+    				?>
+    			</div><!--header -->
+    			<div id="principal" >
+    				<div id="menupage" >
+    				<div id="launiversidad" >
+    				<jdoc:include type="modules" name="launiversidad" headerLevel="3" />
+    				</div>	
+    				<div id="facultad" >
+    				<jdoc:include type="modules" name="facultad" headerLevel="3" />
+    				</div>	
+    				<div id="programas" >
+    				<jdoc:include type="modules" name="programas" headerLevel="3" />
+    				</div>	
+    				<div id="investigacion" >
+    				<jdoc:include type="modules" name="investigacion" headerLevel="3" />
+    				</div>
+    				<div id="apoyofinanciero" >
+    				<jdoc:include type="modules" name="apoyofinanciero" headerLevel="3" />
+    				</div>
+    				<div id="convenios" >
+    				<jdoc:include type="modules" name="convenios" headerLevel="3" />
+    				</div>
+    				<div id="admisiones" >
+    				<jdoc:include type="modules" name="admisiones" headerLevel="3" />
+    				</div>
+    				</div>
+                    <!-- parche Buscador Solicitud 25183-15 -->
+                    <div id="buscar" >
+                    
+                        <?php if(_isMobile_){ ?>
+                            <script>
+                              (function() {
+                                var cx = '012938711384948367755:igfj6yretkk';
+                                var gcse = document.createElement('script');
+                                gcse.type = 'text/javascript';
+                                gcse.async = true;
+                                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                    '//www.google.com/cse/cse.js?mob=1&cx=' + cx;
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(gcse, s);
+                              });
+                            </script>
+                            <gcse:search></gcse:search>
+                        <?php }else{?>
+                            <script>
+                              (function() {
+                                var cx = '012938711384948367755:igfj6yretkk';
+                                var gcse = document.createElement('script');
+                                gcse.type = 'text/javascript';
+                                gcse.async = true;
+                                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                    '//www.google.com/cse/cse.js?cx=' + cx;
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(gcse, s);
+                              });
+                            </script>
+                            <gcse:searchbox-only></gcse:searchbox-only>
+                    <?php } ?>
+                    </div>
+
+                    <!-- END parche Buscador Solicitud 25183-15 -->
+    				<!-- <div id="buscar" >
+    				<jdoc:include type="modules" name="buscar" headerLevel="3" />
+    				</div> -->	
+    			</div><!-- principal -->
+    			<div id="destacadas" >
+    				
+    				<jdoc:include type="modules" name="destacadas" headerLevel="3" style="xhtml" />
+    			</div>		
+    			<div id="<?php echo $showRightColumn ? 'contentarea2' : 'contentarea'; ?>">
+    				<a name="mainmenu"></a>			
+    				<?php 
+    					if( $this->countModules('left or informacionpara or menuexplore or espmultimedia ')){
+    					?>
+    				<div id="left">
+    				<div id="menuinformacionpara">
+    					<jdoc:include type="modules" name="informacionpara"  headerLevel="3"  style="xhtml"/>
+    					</div><!-- menuinformacionpara -->
+    					<div id="menuexplore">
+    					<jdoc:include type="modules" name="menuexplore"  headerLevel="3"  style="xhtml"/>
+    					</div><!-- menuexplore -->
+    					<div id="espmultimedia">
+    					<jdoc:include type="modules" name="espmultimedia"  headerLevel="3"  style="xhtml"/>
+    					</div><!-- espmultimedia -->
+    					<jdoc:include type="modules" name="left"  headerLevel="3"  style="xhtml"/>
+    					</div><!-- left -->
+    					<?php 
+    					}
+    					if( $this->countModules('noticiasuniandinas')){
+    					?>
+    						<div id="noticiasuniandinas">
+    						<?php 
+    				
+    			
+    				if ($home){ 
+    					?>
+    					<a class="nombremod" href="http://www.uniandes.edu.co/mas-noticias-uniandinas" title="M&aacute;s noticias uniandinas" target="_self"> <h3>Noticias uniandinas</h3></a>
+    					<?php 
+    					}
+    					?>
+    						<jdoc:include type="modules" name="noticiasuniandinas"  headerLevel="3"  style="xhtml"/>
+    						</div><!-- noticiasuniandinas -->
+    					<?php 
+    					}
+    					if( $this->countModules('menunoticiasuniandinas or redesociales')){
+    					?>
+    						<div id="<?php echo $menunoticiashome; ?>">
+    						<div id="menunoticiasuniandinas">
+    						<jdoc:include type="modules" name="menunoticiasuniandinas"  headerLevel="3"  style="xhtml"/></div>
+    						<div id="redesociales">
+    						<jdoc:include type="modules" name="redesociales"  headerLevel="3"  style="xhtml"/></div>
+    						</div><!-- menunoticiashome -->
+    						
+    					<?php 
+    					}
+    					if( $this->countModules('eventos')){
+    					?>
+    						<div id="eventos">
+    						<div id="agenda"><a href="http://www.uniandes.edu.co/xplorer/agenda.html" title="Agenda impresa" target="_blank"> Agenda impresa</a></div>
+    						<a class="nombremod" href="http://eventos.uniandes.edu.co" title="Pr&oacute;ximos eventos" target="_blank"> 
+    						<h3>Pr&oacute;ximos eventos</h3></a>
+    						
+    						<jdoc:include type="modules" name="eventos"  headerLevel="3"  style="xhtml"/>
+    						</div><!-- eventos -->
+    					<?php 
+    					}
+    					
+    					if( $this->countModules('inicionoticias')){
+    					?>	<div id="inicionoticias">
+    						<jdoc:include type="modules" name="inicionoticias"  headerLevel="3"  style="xhtml"/>
+    						</div><!-- inicionoticias -->
+    					<?php 
+    					}
+    					
+    					if ($home){ 
+    					?>
+    					<?php
+    					}else{
+    					
+    							if(($this->countModules('right') != '')&&($this->countModules('left or informacionpara or menuexplore or espmultimedia') !='')){  
+    								$main= 'main2';
+    								$wraper='wraper';	
+    							
+    							if(JRequest::getVar('option') == 'com_tag'){
+    								$main= 'main2';
+    								$wraper='wraper';
+    							}
+    							if(JRequest::getVar('option') == 'com_blog_calendar'){
+    								$main= 'main2';
+    								$wraper='wraper';
+    							}
+    							
+    							
+    							}
+    							if(($showRightColumn =='')&&($showLeftColumn =='')) {
+    								$main= 'main3';	
+    								$wraper='wraper2';		
+    							}	
+    							if(($this->countModules('left or informacionpara or menuexplore or espmultimedia')!='') &&($this->countModules('right')=='')) {  
+    								$main= 'main'; 
+    								$wraper='wraper';
+    							}
+    							if(($showRightColumn =='')&&($showLeftColumn =='') && (JRequest::getVar('view') == 'article')&& ((JRequest::getVar('id') == '10')||(JRequest::getVar('id') == '11' ) ||(JRequest::getVar('id') == '12' ))){
+    								$main= 'main4';	
+    								$wraper='wraper4';
+    								}
+    								if($_Itemid==565){
+    								$main= 'main5';	
+    								$wraper='wraper2';
+    								$plantilla='Videos';
+    								}
+    								
+    								if($Itemid==671){
+    								$main= 'main5';	
+    								$wraper='wraper2';
+    								}
+    								if($Itemid==671){
+    								$main= 'main4';	
+    								$wraper='wraper4';
+    								}
+    								if($_Itemid==566){
+    								$main= 'main3';	
+    								$wraper='wraper2';
+    								$plantilla='Multimedia';
+    								}
+    								if($_Itemid==564){
+    								$main= 'main3';	
+    								$wraper='wraper2';
+    								$plantilla='Galer&iacute;a de fotos';
+    								}
+    								if($Itemid==705){
+    								$main= 'main7';	
+    								$wraper='wraper2';
+    								}
+    								
+    								if($Itemid==666){
+    								$main= 'main2';	
+    								$wraper='wraper2';
+    								}
+    								
+    							?>	
+    					
+    							<div id="<?php echo $wraper; ?>">
+    							<div id="<?php echo $main != "" ? $main : 'main4'; ?>">
+    							<?php 
+    					
+    							if( $this->countModules('ruta')){
+    							?>
+    								<div id="ruta">
+    								<jdoc:include type="modules" name="ruta"  style="xhtml" headerLevel="3" />
+    								</div>								
+    							<?php 
+    							} 
+    								if( $this->countModules('compartir')){
+    							?>
+    								<div id="compartir" class="compartir">
+    								<jdoc:include type="modules" name="compartir"  style="xhtml" headerLevel="3" />
+    							</div>								
+    							<?php 
+    							} 	
+    							if ($this->getBuffer('message')) : ?>
+    								<div class="error">
+    									<h2>
+    										<?php echo JText::_('Message'); ?>
+    									</h2>
+    									<jdoc:include type="message" />
+    								</div>
+    							
+    							<?php endif; 
+    							if($plantilla){
+    							?>
+    							<div id="plantilla" class="plantilla">
+    								<div id="a_plantilla" class="a_plantilla">
+    									<?php 
+    										/*Ajuste _fase2*/
+    										$plantilla_alias='';
+    										switch ($plantilla) {
+    												case "Videos":
+    													$plantilla_alias='videos';
+    												break;
+    												case "Multimedia":
+    													$plantilla_alias='multimedia';
+    												break;
+    												
+    												default:
+    													$plantilla_alias='galerias-de-fotos';
+    											}
+    										
+    										$plantilla_url=JURI::base().$plantilla_alias;
+    									?>
+    									<a  href="<?php echo $plantilla_url; ?>" title="<?php echo $plantilla;?>" target="_self"><?php echo $plantilla;?></a>
+    								</div>
+    							</div>	
+    							<?php 
+    							} 
+    							?>
+    							
+    							<jdoc:include type="component" />	
+    							<?php 
+    							
+    								if( $this->countModules('mediaenlaces or mediacompartir')){
+    							?>
+    							<div id="medios">
+    							
+    							<div id="mediaimg" class="mediaimg"><img src="images/M_images/mediacompartir.png"> </img></div>
+    							<div id ="mediacompartir" class="mediacompartir">
+    							<jdoc:include type="modules" name="mediacompartir"  style="xhtml" headerLevel="3" />					
+    							</div>
+    							<div id="mediaenlaces" class="mediaenlaces">
+    							<jdoc:include type="modules" name="mediaenlaces"  style="xhtml" headerLevel="3" />
+    							</div>	
+    							</div>							
+    							<?php 
+    							} 	
+    							?>
+    							</div><!-- end main or main2 -->
+    						
+    							<?php 
+    							if(($Itemid==566) || ($Itemid==564)){
+    							$verright='no';
+    							}else{
+    							$verright='si';
+    							}
+    							if($verright!='no'){
+    							?>	
+    									<div id="<?php echo $right; ?>">
+    									<jdoc:include type="modules" name="right"  style="xhtml" headerLevel="3" />
+    									</div><!-- right -->
+    							<?php 
+    							
+    							
+    							}
+    							
+    							
+    						
+    							if( $this->countModules('galeriasrelacionadas or enlacesrelacionadosgalerias')){
+    							?>
+    								<div id="gelyenlrelacionados">
+    								<div id="galeriasrelacionadas">
+    								<jdoc:include type="modules" name="galeriasrelacionadas"  headerLevel="3"  style="xhtml"/></div>
+    								<div id="enlacesrelacionadosgalerias">
+    								<jdoc:include type="modules" name="enlacesrelacionadosgalerias"  headerLevel="3"  style="xhtml"/></div>
+    								</div><!-- gelyenlrelacionados -->
+    								
+    							<?php 
+    							}	
+    							if( $this->countModules('masgalerias')){
+    					        ?>
+    								<div id="masgalerias">
+    								<jdoc:include type="modules" name="masgalerias"  headerLevel="3"  style="xhtml"/>
+    								</div><!-- noticiasuniandinas -->
+    							<?php 
+    							}							
+    						
+    						}
+    						?>	
+    						<div class="wrap"></div>
+    						</div><!-- wrapper -->	
+    						<div id="footer">
+    				<jdoc:include type="modules" name="footer" />
+    			<div class="wrap"></div>
+    		</div><!-- footer -->	
+    								
+    			</div><!-- contentarea -->
+    			
+    	   </div><!-- all -->
+    	</div>	
+	</div><!--contenedor -->
+</body>
+</html>
