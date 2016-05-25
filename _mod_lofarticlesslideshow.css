@@ -7,7 +7,7 @@
 	display: block;
 	width: 960px !important;
 	background: url(../images/transparent_bg2.png);
-	height: 88px !important;
+	height: 100px !important;
 	bottom: 0px;
 	top: auto !important;
 }
@@ -68,13 +68,13 @@
 }
 
 .lof-ass .lof-navigator li .myclear span{
-	max-height: 68px;
+	max-height: 74px;
 	overflow: hidden;
 }
 
 .lof-ass .lof-navigator li .myclear span{
 	width: 90px;
-	height: 68px;
+	height: 74px;
 }
 
 .myclear img{
