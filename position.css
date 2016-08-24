@@ -1,0 +1,263 @@
+.lof-main-item a.imggg img{
+	width: 100%;
+	height: auto;
+}
+
+.lof-navigator-outer{
+	display: block;
+	width: 960px !important;
+	background: url(../images/transparent_bg2.png);
+	height: 100px !important;
+	bottom: 0px;
+	top: auto !important;
+}
+
+.lof-navigator-outer ul.lof-navigator li{
+	display: inline-block;
+	width: 192px !important;
+	overflow: hidden;
+	float: left;
+	margin: 0px !important;
+}
+
+.lof-ass .lof-navigator li div{
+	background: url(../images/transparent_bg2.png);
+	border: none !important;
+	padding-left: 0px;
+}
+
+.lof-ass .grey .lof-navigator li.active{
+	background: url(../images/transparent_bg3.png) !important;
+	border: none !important;
+}
+
+.lof-ass .lof-description{
+	position: absolute;
+	top: 166px;
+}
+
+.lof-ass .lof-description h4 a, .lof-ass .lof-description p a{
+	color: #FFFFFF !important;
+	text-shadow: 0.1em 0.1em 0.1em #000;
+	text-decoration: none !important;
+	behavior: url(/templates/tmpl_uniandes/css/PIE.htc);
+}
+
+.lof-ass .lof-css3 .lof-description{
+	box-shadow: none;
+	margin-left: 25px;
+}
+
+.lof-ass .lof-description{
+	background: none;
+}
+
+.lof-ass .lof-description img{
+	display: none;
+}
+
+.lof-ass .lof-navigator li h4 a img{
+	display: none;
+}
+
+.lof-ass .lof-navigator li .myclear a:first-child, .lof-ass .lof-navigator li .myclear span{
+	float: left;
+	display: inline-block;
+	font-size: 11px;
+	line-height: 10px;
+}
+
+.lof-ass .lof-navigator li .myclear span{
+	max-height: 74px;
+	overflow: hidden;
+}
+
+.lof-ass .lof-navigator li .myclear span{
+	width: 90px;
+	height: 74px;
+}
+
+.myclear img{
+	left: 0px;
+}
+
+.lof-ass ul.lof-navigator li div.myclear, .lof-ass ul.lof-navigator li div.myclear:hover{
+	top: 0px;
+	padding-top: 8px;
+	padding-left: 8px;
+}
+
+.lof-ass .lof-navigator li .myclear a img{
+	border: none !important;
+	width: 80px;
+	height: 50px;
+	float: none;
+}
+
+.lof-ass .lof-navigator li h4{
+	display: none;
+}
+
+.lof-ass .lof-description{
+	width: 480px;
+}
+
+/* TABLET */
+
+.tablet{
+	display: none;
+	padding: 8px;
+}
+
+.movil{
+	display: none;
+	padding: 8px;
+}
+
+.lof_new.principal, .lof_new.principal .img{
+	overflow: hidden;
+	display: block;
+	width: 100%;
+	height: 292px;
+}
+
+.lof_new.principal .img{
+	position: relative;
+	overflow: hidden;
+	height: 292px;
+}
+
+.lof_new.principal{
+	border: #CCC solid 1px;
+}
+
+.lof_new.principal img{
+	width: 100%;
+	height: auto;
+	min-height: 292px;
+}
+
+.lof_new.principal .descripcion{
+	background: url(../images/transparent_bg2.png);
+	display: block;
+    height: 78px;
+    margin-top: 214px;
+    padding: 8px;
+    position: absolute;
+    width: 99%;
+}
+
+.lof_new.principal .descripcion a, .lof_new.sub .descripcion a{
+	color: #FFFFFF;
+	font-size: 18px;
+	text-decoration: none;
+}
+
+.lof_new.principal .descripcion p a, .lof_new.sub .descripcion p a{
+	font-size: 13px;
+}
+
+.lof_new.sub{
+	border: #CCC solid 1px;
+	display: inline-block;
+	/*max-width: 465px;*/
+	width: 49.5%;
+	height: 185px;
+	overflow: hidden;
+	margin-top: 8px;
+}
+
+.lof_new.sub img{
+	width: 100%;
+	height: auto;
+	min-height: 185px;
+}
+
+.lof_new.sub .img{
+	position: relative;
+	overflow: hidden;
+}
+
+.lof_new.sub .descripcion{
+    background: none repeat scroll 0 0 #333333;
+    display: block;
+    height: 43px;
+    line-height: 14px;
+    margin-top: 139px;
+    overflow: hidden;
+    padding: 2px 4px;
+    position: absolute;
+    width: 99%;
+}
+
+.lof_new.sub .descripcion label{
+	color: #fabf00;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+
+.movil .lof_new.sub .descripcion label{
+	color: #fabf00;
+	text-transform: uppercase;
+	font-weight: bold;
+	display: block;
+}
+
+.movil .lof_new.principal .descripcion{
+	background: #333333;
+}
+
+.movil .lof_new.sub .descripcion{
+	background: none;
+	display: inline-block;
+	width: auto;
+	max-width: auto;
+	position: relative;
+	margin: 0px;
+	color: #000;
+	padding-top: 0;
+	height: auto;
+	overflow: inherit;
+}
+
+.movil .lof_new.sub .descripcion a{
+	color: #000;
+}
+
+.movil .lof_new.sub .img{
+	float: left;
+	overflow: hidden;
+	display: inline-block;
+	width: 150px;
+	height: 60px;
+}
+
+.movil .lof_new.sub img{
+	width: 100%;
+	height: auto;
+	min-height: 60px !important;
+}
+
+.movil .lof_new.sub{
+	height: auto;
+	width: 100%;
+	max-width: 560px;
+	border: none;
+}
+
+.myclear label{
+    color: #FABF00;
+    font-weight: bold;
+    text-transform: uppercase;
+	font-size: 11px;
+}
+
+#nuevasnoticias ._img_normal img{
+	width: inherit;
+	height: inherit;
+}
+
+.division{
+	display: table;
+}
